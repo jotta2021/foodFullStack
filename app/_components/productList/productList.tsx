@@ -1,21 +1,22 @@
-import { db } from "@/app/_lib/prisma";
+
 import ProductItem from "./productItem";
 
-const ProductList = async () => {
-const products = await db.product.findMany({
-    where:{
-        discountPercentage:{
-            gt:0,        }
-    },
-    take:10,
-    include:{
+import { Prisma } from "@prisma/client";
+
+interface ProductListProps {
+    products: Prisma.ProductGetPayload<{
+      include:{
         restaurant:{
-            select:{
-                name:true
-            }
+          select:{
+            name:true;
+          }
         }
-    }
-});
+      }
+    }>[]
+  }
+
+const ProductList = async ({products}: ProductListProps) => {
+
 
     return ( 
 

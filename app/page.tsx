@@ -1,11 +1,12 @@
 import Header from "./_components/header";
 import Search from "./_components/search";
 import CategoryList from "./_components/categoryList";
-import Image from "next/image";
 import ProductList from "./_components/productList/productList";
 import { Button } from "./_components/ui/button";
 import { ChevronRightIcon } from "lucide-react";
 import { db } from "./_lib/prisma";
+import PromoBanner from "./_components/promoBanner/promoBanner";
+import RestaurantList from "./_components/restaurantList";
 export default async function Home(){
   const products = await db.product.findMany({
     where:{
@@ -32,15 +33,11 @@ export default async function Home(){
   </div>
   <div className="pt-6 px-5">
 
-  
-  <Image src={'/Banner01.png'} 
-  width={0} 
-  height={0} 
-  alt="promoção 30% de desconto em pizzas"
-  className=" w-full h-auto object-contain"
-  sizes="100vw"
-  quality={100}
+  <PromoBanner 
+  src={'/Banner01.png'}
+  alt={'Promoção 30% de desconto em pizzas'}
   />
+
 </div>
 <div className="pt-6 space-y-3">
   <div className="px-5 flex items-center justify-between ">
@@ -54,6 +51,25 @@ export default async function Home(){
   </div>
   
   <ProductList products={products}/>
+</div>
+<div className="px-5 py-6">
+<PromoBanner 
+  src={'/Banner02.png'}
+  alt={'lanches a partir de 17,90'}
+  />
+</div>
+<div className="px-5 flex items-center justify-between ">
+   <h2 className="font-semibold text-base">Restaurantes Recomendados</h2> 
+  <Button
+  variant='ghost'
+  className="text-primary p-0 hover:bg-transparent"
+  >Ver todos
+  <ChevronRightIcon/>
+  </Button>
+  </div>
+
+<div className="px-5 py-6" >
+  <RestaurantList/>
 </div>
 
   </div>

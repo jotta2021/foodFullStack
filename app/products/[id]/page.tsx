@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import ImageProductComponent from "./_components/imageProductComponents";
 import ProductDetail from "./_components/productDetails";
+import { Button } from "@/app/_components/ui/button";
 interface ProductProps{
     params:{
         id:String
@@ -26,6 +27,9 @@ const juices = await db.product.findMany({
         category: {
             name:'Sucos',
         },
+       restaurant:{
+        id: product?.restaurandId
+       }
     },
         include:{
             restaurant:true,
@@ -43,7 +47,7 @@ console.log(product)
         <div >
 
  <ImageProductComponent product={product}/>
-<div className="px-5 py-6">
+<div className="px-5 py-6 bg-white rounded-tl-3xl rounded-tr-3xl relative z-30 mt-[-1.5rem]">
 
 
 {/**Restaurante */}
@@ -67,9 +71,15 @@ className="rounded-full"
 {/**titulo */}
 <ProductDetail product={product} complementaryProducts={juices} />
 
-
+<div className="px-5 mt-6 ">
+<Button
+className='w-full rounded-lg font-semibold'
+>Adicionar à Sacola</Button>
+</div>
 
 </div>
+
+
         </div>
      );
 }

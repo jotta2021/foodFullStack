@@ -7,6 +7,7 @@ import { ChevronRightIcon } from "lucide-react";
 import { db } from "./_lib/prisma";
 import PromoBanner from "./_components/promoBanner/promoBanner";
 import RestaurantList from "./_components/restaurantList";
+import Link from "next/link";
 export default async function Home(){
   const products = await db.product.findMany({
     where:{
@@ -60,12 +61,18 @@ export default async function Home(){
 </div>
 <div className="px-5 flex items-center justify-between ">
    <h2 className="font-semibold text-base">Restaurantes Recomendados</h2> 
-  <Button
+
+   <Link href="/restaurantPage/recomended">
+
+   <Button
   variant='ghost'
   className="text-primary p-0 hover:bg-transparent"
   >Ver todos
   <ChevronRightIcon/>
   </Button>
+
+   </Link>
+
   </div>
 
 <div className="px-5 py-6" >

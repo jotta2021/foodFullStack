@@ -7,7 +7,7 @@ interface DiscountProps{
 const DiscountBadge = ({product}:DiscountProps) => {
     return ( 
         <div className="relative  left-2 bg-primary text-white *:
-        rounded-full px-2 py-[2px] flex items-center
+        rounded-full px-2 py-[2px] flex items-center top-2
         gap-[2px] w-[52px]
         ">
          <ArrowDownIcon size={12}/>
